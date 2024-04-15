@@ -1,7 +1,10 @@
+from typing import Optional
+
+
 class TreeNode:
 
-    def __init__(self):
-        self.val = None
+    def __init__(self, key):
+        self.val = key
         self.left = None
         self.right = None
 
@@ -49,16 +52,48 @@ class BinaryTree:
 
 
 
-array = [5,6,3,1,4]
+
+    def memo(self, root: Optional[TreeNode], rv: int):
+        if not root:
+            return 0
+        rv = rv * 10
+        rv += root.val
+
+        if(not root.left and not root.right):
+            return rv
+        
+        op=self.memo(root.left, rv)
+        tp=self.memo(root.right, rv)
+        
+        return op+tp
+    
+    def sumNumbers(self, root: Optional[TreeNode]) -> int:
+        
+        _sum:int = root.val
+        rv = root.valz
+        _sum += self.memo(root.left, rv)
+        _sum += self.memo(root.right, rv)
+        return _sum
+    
+
+
+
+
+    def insert_tree(self, root, values, index):
+        if index < len(values):
+            if values[index] is not None:
+                root = TreeNode(values[index])
+                root.left = self.insert_tree(root.left, values, 2 * index + 1)
+                root.right = self.insert_tree(root.right, values, 2 * index + 2)
+        return root
+
+
+array = [4,9,0,5,1]
 tree = BinaryTree()
 
-for i in range(len(array)):
-    tree.insert(array[i])
-
-
+tree.root = tree.insert_tree(tree.root, array, 0)
 # tree.inorder_traversal(tree.root)
-tree.dfs(tree.root)
-print()
+print(tree.sumNumbers(tree.root))
 
 
     
