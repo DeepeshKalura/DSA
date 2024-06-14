@@ -7,7 +7,7 @@
 # @lc code=start
 from typing import List
 
-
+# TODO: I used solution please re-implemented that logic again and again
 class Solution:
     def minIncrementForUnique(self, nums: List[int]) -> int:
         _max, _min = max(nums), min(nums)
