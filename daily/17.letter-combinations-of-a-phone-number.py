@@ -13,10 +13,40 @@ from typing import List
 
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
-        pass 
+        keyboard = {
+            "2": "abc",
+            "3": "def",
+            "4": "ghi",
+            "5": "jkl",
+            "6": "mno",
+            "7": "pqrs",
+            "8": "tuv",
+            "9": "wxyz"
+        }
+
+        result = []
+        def recursion(start:int, path):
+            if(start == len(digits)):
+                result.append(path)
+                return 
+            
+            sequence = keyboard[digits[start]]
+
+            for i in sequence:
+                recursion(start+1, path+i)
+
+        
+        recursion(0, "")
+
+        return result
+                
+
+
+
 
     
         
 # @lc code=end
 
 
+print(Solution().letterCombinations("23"))
