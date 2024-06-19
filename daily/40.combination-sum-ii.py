@@ -24,7 +24,7 @@ class Solution:
             
             for i in range(start, len(candidates)):
                 
-                if(candidates[i] == candidates[i-1]):
+                if(i> start and candidates[i] == candidates[i-1]):
                     continue
                 
                 if(candidates[i]<=target):
