@@ -13,28 +13,31 @@ class Solution:
         candidates.sort()
 
         result = []
+
         stack = []
 
-        def backtrack(start, target):
 
-            
+        def backtrack(start:int, target:int):
             if(target == 0):
                 result.append(stack[:])
                 return 
             
             for i in range(start, len(candidates)):
-                if i>start and candidates[i]==candidates[i-1]:
+                
+                if(candidates[i] == candidates[i-1]):
                     continue
+                
                 if(candidates[i]<=target):
                     stack.append(candidates[i])
-                    backtrack(i+1, target - candidates[i])
+                    backtrack(i+1, target-candidates[i])
                     stack.pop()
                 else:
                     break
-
-            
+                
+                
+    
+        
         backtrack(0, target)
-
         return result
 
 
